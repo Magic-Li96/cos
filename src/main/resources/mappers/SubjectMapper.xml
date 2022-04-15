@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cos.dao.SubjectMapper">
+  <resultMap id="BaseResultMap" type="cos.bean.Subject">
+    <id column="subject_id" jdbcType="INTEGER" property="subjectId" />
+    <result column="subject_name" jdbcType="VARCHAR" property="subjectName" />
+    <result column="department_id" jdbcType="INTEGER" property="departmentId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cos.bean.Subject">
+    insert into subject (subject_id, subject_name, department_id
+      )
+    values (#{subjectId,jdbcType=INTEGER}, #{subjectName,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cos.bean.Subject">
+    update subject
+    set subject_name = #{subjectName,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=INTEGER}
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByName" parameterType="cos.bean.Subject">
+    update subject
+    set subject_id = #{subjectId,jdbcType=INTEGER},
+      department_id = #{departmentId,jdbcType=INTEGER}
+    where subject_name = #{subjectName,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select subject_id, subject_name, department_id
+    from subject
+    where subject_id = #{subjectId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select subject_id, subject_name, department_id
+    from subject
+  </select>
+</mapper>

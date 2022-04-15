@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<style>
+.container {
+	padding-top: 10px;
+}
+
+td {
+	width: 100px;
+	height: 50px;
+}
+</style>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>兰州工业学院课程大纲管理系统</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+
+</head>
+
+<body style="background-color: rgb(150, 141, 236);">
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<nav class="navbar navbar-default" role="navigation">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed"
+							data-toggle="collapse"
+							data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a style="font-size: 20px;" class="navbar-brand" href="#"><b>课程大纲管理系统</b></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse"
+						id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<!--当前用户-->
+							<li class="active"><a href="#"> <span
+									class="glyphicon glyphicon-user"></span> XXXX&nbsp;系主任
+							</a></li>
+							<li><a href="#"><span
+									class="glyphicon glyphicon-pushpin"></span><b>&nbsp;用户中心</b></a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-off"></span><b>&nbsp;退出系统</b></a></li>
+						</ul>
+						<!--搜索框-->
+						<form class="navbar-form navbar-right">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="请输入课程编号">
+							</div>
+							<button type="submit" class="btn btn-default">搜索</button>
+						</form>
+					</div>
+					<!-- /.navbar-collapse -->
+				</nav>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+				<ul class="list-group">
+					<li style="background-color: rgb(143, 206, 248);"
+						class="list-group-item"><b>课程大纲管理</b></li>
+					<li class="list-group-item text-center">
+						<button onclick="location.href='/cos/allArticle'" class="btn btn-default">显示本系所有课程大纲</button>
+					</li>
+					<li class="list-group-item text-center">
+						<button onclick="location.href='/cos/validArticle'" class="btn btn-default">显示本系已生效课程大纲</button>
+					</li>
+					<li class="list-group-item text-center">
+						<button onclick="location.href='/cos/waitFirstAssessArticle'" class="btn btn-default">待初审课程大纲</button>
+					</li>
+					<li class="list-group-item text-center">
+						<button onclick="location.href='/cos/waitDistributionArticle'" class="btn btn-default">待分配课程大纲</button>
+					</li>
+					<li class="list-group-item text-center">
+						<button onclick="location.href='/cos/myArticle'" class="btn btn-default">我的课程大纲</button>
+					</li>
+					<li style="background-color: rgb(143, 206, 248);"
+						class="list-group-item"><b>课程信息管理</b></li>
+					<li class="list-group-item text-center">
+						<button data-toggle="modal" data-target="#subjectModal"
+							class="btn btn-default">人才培养方案</button>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							ID为&nbsp;<b>XXXXXXXXXXXXXXXXX</b>&nbsp;用户
+						</h3>
+					</div>
+					<div class="panel-body">
+						<table class="text-center">
+							<tr>
+								<td>用户名：</td>
+								<td><input type="text" value="username"></td>
+							</tr>
+							<tr>
+								<td>密码：</td>
+								<td><input type="password" value="username"></td>
+							</tr>
+							<tr>
+								<td>联系电话：</td>
+								<td><input type="text" value="152451257845"></td>
+							</tr>
+							<tr>
+								<td>
+									<button type="button" class="btn btn-primary">点击提交修改信息</button>
+								</td>
+								<td>
+									<button type="button" class="btn btn-danger">注销用户信息</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container-fluid -->
+
+</body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="../lib/jQuery/jquery-3.6.0.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="../lib/bootstrap/js/bootstrap.js"></script>
+
+</html>

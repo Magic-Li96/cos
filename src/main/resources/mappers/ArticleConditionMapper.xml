@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cos.dao.ArticleConditionMapper">
+  <resultMap id="BaseResultMap" type="cos.bean.ArticleCondition">
+    <id column="article_condition_id" jdbcType="INTEGER" property="articleConditionId" />
+    <result column="article_condition_name" jdbcType="VARCHAR" property="articleConditionName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from article_condition
+    where article_condition_id = #{articleConditionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cos.bean.ArticleCondition">
+    insert into article_condition (article_condition_id, article_condition_name
+      )
+    values (#{articleConditionId,jdbcType=INTEGER}, #{articleConditionName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cos.bean.ArticleCondition">
+    update article_condition
+    set article_condition_name = #{articleConditionName,jdbcType=VARCHAR}
+    where article_condition_id = #{articleConditionId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select article_condition_id, article_condition_name
+    from article_condition
+    where article_condition_id = #{articleConditionId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select article_condition_id, article_condition_name
+    from article_condition
+  </select>
+</mapper>

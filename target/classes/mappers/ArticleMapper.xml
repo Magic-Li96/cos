@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cos.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="cos.bean.Article">  	
+    <id column="p_id" jdbcType="INTEGER" property="pId" />
+    <id column="course" jdbcType="INTEGER" property="course" />
+    <id column="department" jdbcType="INTEGER" property="department" />
+    <id column="subject" jdbcType="INTEGER" property="subject" />
+    <result column="article_name" jdbcType="VARCHAR" property="articleName" />
+    <result column="article_src" jdbcType="VARCHAR" property="articleSrc" />
+    <result column="contidion" jdbcType="INTEGER" property="contidion" />
+    <result column="start_institute" jdbcType="INTEGER" property="startInstitute" />
+    <result column="institute" jdbcType="INTEGER" property="institute" />
+    <result column="teacher" jdbcType="VARCHAR" property="teacher" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from article
+    where course = #{course,jdbcType=INTEGER}
+      and department = #{department,jdbcType=INTEGER}
+      and subject = #{subject,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cos.bean.Article">
+    insert into article (p_id ,course, department, subject, 
+      article_name, article_src, contidion, 
+      start_institute, institute, teacher
+      )
+    values (#{pId,jdbcType=INTEGER},#{course,jdbcType=INTEGER}, #{department,jdbcType=INTEGER}, #{subject,jdbcType=INTEGER}, 
+      #{articleName,jdbcType=VARCHAR}, #{articleSrc,jdbcType=VARCHAR}, #{contidion,jdbcType=INTEGER}, 
+      #{startInstitute,jdbcType=INTEGER}, #{institute,jdbcType=INTEGER}, #{teacher,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cos.bean.Article">
+    update article
+    set article_name = #{articleName,jdbcType=VARCHAR},
+      article_src = #{articleSrc,jdbcType=VARCHAR},
+      contidion = #{contidion,jdbcType=INTEGER},
+      start_institute = #{startInstitute,jdbcType=INTEGER},
+      institute = #{institute,jdbcType=INTEGER},
+      teacher = #{teacher,jdbcType=VARCHAR}
+    where course = #{course,jdbcType=INTEGER}
+      and department = #{department,jdbcType=INTEGER}
+      and subject = #{subject,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select course, department, subject, article_name, article_src, contidion, start_institute, 
+    institute, teacher
+    from article
+    where course = #{course,jdbcType=INTEGER}
+      and department = #{department,jdbcType=INTEGER}
+      and subject = #{subject,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select course, department, subject, article_name, article_src, contidion, start_institute, 
+    institute, teacher
+    from article
+  </select>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cos.dao.MessageMapper">
+  <resultMap id="BaseResultMap" type="cos.bean.Message">
+    <id column="message_id" jdbcType="INTEGER" property="messageId" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="message_type" jdbcType="INTEGER" property="messageType" />
+    <result column="send_user" jdbcType="VARCHAR" property="sendUser" />
+    <result column="receive_user" jdbcType="VARCHAR" property="receiveUser" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="message_state" jdbcType="INTEGER" property="messageState" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cos.bean.Message">
+    insert into message (message_id, message, message_type, 
+      send_user, receive_user, time, 
+      message_state)
+    values (#{messageId,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, #{messageType,jdbcType=INTEGER}, 
+      #{sendUser,jdbcType=VARCHAR}, #{receiveUser,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{messageState,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cos.bean.Message">
+    update message
+    set message = #{message,jdbcType=VARCHAR},
+      message_type = #{messageType,jdbcType=INTEGER},
+      send_user = #{sendUser,jdbcType=VARCHAR},
+      receive_user = #{receiveUser,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      message_state = #{messageState,jdbcType=INTEGER}
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select message_id, message, message_type, send_user, receive_user, time, message_state
+    from message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select message_id, message, message_type, send_user, receive_user, time, message_state
+    from message
+  </select>
+</mapper>

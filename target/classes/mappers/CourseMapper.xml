@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cos.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="cos.bean.Course">  
+    <id column="p_id" jdbcType="INTEGER" property="pId" />
+    <id column="course_id" jdbcType="INTEGER" property="courseId" />
+    <id column="department" jdbcType="INTEGER" property="department" />
+    <id column="subject" jdbcType="INTEGER" property="subject" />
+    <result column="course_name" jdbcType="VARCHAR" property="courseName" />
+    <result column="institute" jdbcType="INTEGER" property="institute" />
+    <result column="start_institute" jdbcType="INTEGER" property="startInstitute" />
+    <result column="priority" jdbcType="INTEGER" property="priority" />
+    <result column="all_class_hours" jdbcType="INTEGER" property="allClassHours" />
+    <result column="credit" jdbcType="DOUBLE" property="credit" />
+    <result column="course_type" jdbcType="INTEGER" property="courseType" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    delete from course
+    where course_id = #{courseId,jdbcType=INTEGER}
+      and department = #{department,jdbcType=INTEGER}
+      and subject = #{subject,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cos.bean.Course">
+    insert into course (course_id, department, subject, 
+      course_name, institute, start_institute, 
+      priority, all_class_hours, credit, 
+      course_type)
+    values (#{courseId,jdbcType=INTEGER}, #{department,jdbcType=INTEGER}, #{subject,jdbcType=INTEGER}, 
+      #{courseName,jdbcType=VARCHAR}, #{institute,jdbcType=INTEGER}, #{startInstitute,jdbcType=INTEGER}, 
+      #{priority,jdbcType=INTEGER}, #{allClassHours,jdbcType=INTEGER}, #{credit,jdbcType=DOUBLE}, 
+      #{courseType,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cos.bean.Course">
+    update course
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      institute = #{institute,jdbcType=INTEGER},
+      start_institute = #{startInstitute,jdbcType=INTEGER},
+      priority = #{priority,jdbcType=INTEGER},
+      all_class_hours = #{allClassHours,jdbcType=INTEGER},
+      credit = #{credit,jdbcType=DOUBLE},
+      course_type = #{courseType,jdbcType=INTEGER}
+    where course_id = #{courseId,jdbcType=INTEGER}
+      and department = #{department,jdbcType=INTEGER}
+      and subject = #{subject,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select p_id,course_id, department, subject, course_name, institute, start_institute, priority, 
+    all_class_hours, credit, course_type
+    from course
+    where course_id = #{courseId,jdbcType=INTEGER}
+      and department = #{department,jdbcType=INTEGER}
+      and subject = #{subject,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select p_id,course_id, department, subject, course_name, institute, start_institute, priority, 
+    all_class_hours, credit, course_type
+    from course
+  </select>
+</mapper>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="jdbc.properties"/>
+  	<settings>
+  		<setting name="jdbcTypeForNull" value="NULL" />
+  	</settings>
+	<!-- 这里的环境可以有多个，环境id不同，作用不同，如下，第一个environment作用是开发，第一个environment作用是生产 -->
+	<environments default="development">
+		<!-- 这里的id是指环境的id，常常写为自己的作用 -->
+		<environment id="development">
+			<!-- 这个属性是连接管理类型 一般有2个值可选 -->
+			<!-- JDBC 是需要应用程序自己管理事务 -->
+			<!-- 例如，部署到ApacheTomcat的应用程序，需要应用程序自己管理事务。因为ApacheTomcat不会帮我们管理事务。 -->
+			<!-- MANAGED 是让服务器自动管理事务 像glassfish 服务器 -->
+			<transactionManager type="JDBC" />
+			<!-- dataSource的类型type属性可以配置成其内置类型之一，如UNPOOLED，POOLED，JNDI。 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+		<environment id="production">
+			<transactionManager type="MANAGED" />
+			<dataSource type="JNDI">
+				<property name="data_source"
+					value="java:comp/jdbc/MyBatisDemoDS" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers> 
+  		<mapper resource="mappers/PositionMapper.xml" />
+  		<mapper resource="mappers/InstituteMapper.xml" />
+  		<mapper resource="mappers/UserMapper.xml" />
+  		<mapper resource="mappers/DepartmentMapper.xml" />
+  		<mapper resource="mappers/SubjectMapper.xml" />
+  		<mapper resource="mappers/DepartmentHeadMapper.xml" />
+  		<mapper resource="mappers/CourseTypeMapper.xml" />
+  		<mapper resource="mappers/CourseMapper.xml" />
+  		<mapper resource="mappers/ArticleConditionMapper.xml" />
+  		<mapper resource="mappers/ArticleMapper.xml" />
+  		<mapper resource="mappers/MessageMapper.xml" />
+  		<mapper resource="mappers/MessageTypeMapper.xml" />
+  		<mapper resource="mappers/MessageStateMapper.xml" />
+  	</mappers>
+</configuration>

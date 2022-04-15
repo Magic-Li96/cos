@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cos.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="cos.bean.User">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="cellphone" jdbcType="VARCHAR" property="cellphone" />
+    <result column="authority" jdbcType="INTEGER" property="authority" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="institute" jdbcType="INTEGER" property="institute" />
+    <result column="position" jdbcType="INTEGER" property="position" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cos.bean.User">
+    insert into user (user_id, user_name, password, 
+      cellphone, authority, state, 
+      institute, position)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{cellphone,jdbcType=VARCHAR}, #{authority,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{institute,jdbcType=INTEGER}, #{position,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cos.bean.User">
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      cellphone = #{cellphone,jdbcType=VARCHAR},
+      authority = #{authority,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      institute = #{institute,jdbcType=INTEGER},
+      position = #{position,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select user_id, user_name, password, cellphone, authority, state, institute, position
+    from user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, user_name, password, cellphone, authority, state, institute, position
+    from user
+  </select>
+</mapper>

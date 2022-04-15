@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cos.dao.CourseTypeMapper">
+  <resultMap id="BaseResultMap" type="cos.bean.CourseType">
+    <id column="course_type_id" jdbcType="INTEGER" property="courseTypeId" />
+    <result column="course_type_name" jdbcType="VARCHAR" property="courseTypeName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course_type
+    where course_type_id = #{courseTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cos.bean.CourseType">
+    insert into course_type (course_type_id, course_type_name)
+    values (#{courseTypeId,jdbcType=INTEGER}, #{courseTypeName,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cos.bean.CourseType">
+    update course_type
+    set course_type_name = #{courseTypeName,jdbcType=VARCHAR}
+    where course_type_id = #{courseTypeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select course_type_id, course_type_name
+    from course_type
+    where course_type_id = #{courseTypeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select course_type_id, course_type_name
+    from course_type
+  </select>
+</mapper>
